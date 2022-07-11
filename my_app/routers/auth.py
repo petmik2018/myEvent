@@ -19,7 +19,7 @@ async def login(request: OAuth2PasswordRequestForm = Depends()):
 
     if not my_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    if not pbkdf2_sha256.verify(request.password, my_user.password):
+    if not pbkdf2_sha256.verify(request.password, my_user.hashed_password):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Invalid password")
 
     access_token = create_access_token(

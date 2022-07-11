@@ -38,7 +38,7 @@ async def insert_user(user: UserSchemaIn):
     hashed_password = pbkdf2_sha256.hash(user.password)
     query = users_table.insert().values(
         username=user.username,
-        password=hashed_password
+        hashed_password=hashed_password
     )
     user_id = await my_database.execute(query)
     return {**user.dict(), "id": user_id}

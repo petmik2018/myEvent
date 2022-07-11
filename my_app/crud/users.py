@@ -1,7 +1,6 @@
 from fastapi import HTTPException
 
 from my_app.database import my_database
-from my_app import security, schemas, tables
 from my_app.tables import users_table
 
 

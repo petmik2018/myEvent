@@ -3,10 +3,11 @@ from pydantic import EmailStr, BaseModel
 
 
 class UserSchemaIn(BaseModel):
-    username: str
+    username: EmailStr
     password: str
 
 
 class UserSchema(BaseModel):
     id: int
-    username: str
+    username: EmailStr
+
