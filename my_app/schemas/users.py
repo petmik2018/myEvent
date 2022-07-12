@@ -10,4 +10,5 @@ class UserSchemaIn(BaseModel):
 class UserSchema(BaseModel):
     id: int
     username: EmailStr
+    is_superuser: bool = False
 
