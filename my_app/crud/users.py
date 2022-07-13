@@ -13,7 +13,7 @@ async def read_users():
     return await my_database.fetch_all(query=query)
 
 
-async def read_user(user_id: int):
+async def read_user(user_id: str):
     query = users_table.select().where(users_table.c.id == user_id)
     return await my_database.fetch_one(query=query)
 

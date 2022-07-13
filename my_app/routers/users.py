@@ -1,5 +1,4 @@
 from typing import List
-from fastapi import HTTPException
 from fastapi import APIRouter, Depends, status
 
 from my_app.crud.users import read_user, read_users, create_user
@@ -27,7 +26,6 @@ async def get_users():
 
 @router.get("/me", response_model=UserSchema)
 async def get_user(current_user: UserSchema = Depends(get_current_user)):
-    print("current_user: ", current_user)
     user = await read_user(current_user.user_id)
     return user
 

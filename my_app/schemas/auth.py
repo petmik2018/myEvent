@@ -1,8 +1,8 @@
 from typing import Optional
-from pydantic import EmailStr, BaseModel
+from pydantic import BaseModel
 
 
 class TokenData(BaseModel):
     user_id: Optional[int] = None
-    user_email: Optional[EmailStr] = None
+
 

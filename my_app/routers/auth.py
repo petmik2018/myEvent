@@ -23,7 +23,7 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Invalid password")
 
     access_token = create_access_token(
-        data={"user_id": my_user.id, "username": my_user.user_email}
+        data={"user_id": my_user.id}
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
