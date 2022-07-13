@@ -13,17 +13,17 @@ router = APIRouter(
 
 
 @router.post("/login")
-async def login(request: OAuth2PasswordRequestForm = Depends()):
-    query = users_table.select().where(users_table.c.username == request.username)
+async def login(form: OAuth2PasswordRequestForm = Depends()):
+    query = users_table.select().where(users_table.c.user_email == form.username)
     my_user = await my_database.fetch_one(query=query)
 
     if not my_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    if not pbkdf2_sha256.verify(request.password, my_user.hashed_password):
+    if not pbkdf2_sha256.verify(form.password, my_user.hashed_password):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Invalid password")
 
     access_token = create_access_token(
-        data={"user_id": my_user.id, "username": my_user.username}
+        data={"user_id": my_user.id, "username": my_user.user_email}
     )
     return {"access_token": access_token, "token_type": "bearer"}
 

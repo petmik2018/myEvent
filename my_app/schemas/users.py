@@ -3,12 +3,12 @@ from pydantic import EmailStr, BaseModel
 
 
 class UserSchemaIn(BaseModel):
-    username: EmailStr
+    user_email: EmailStr
     password: str
 
 
 class UserSchema(BaseModel):
     id: int
-    username: EmailStr
+    user_email: EmailStr
     is_superuser: bool = False
 

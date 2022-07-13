@@ -20,9 +20,9 @@ async def read_user(user_id: int):
 
 async def create_user(user: UserSchemaIn):
     hashed_password = pbkdf2_sha256.hash(user.password)
-    is_me = (superuser_username == user.username)
+    is_me = (superuser_username == user.user_email)
     query = users_table.insert().values(
-        username=user.username,
+        user_email=user.user_email,
         hashed_password=hashed_password,
         is_superuser=is_me,
     )
